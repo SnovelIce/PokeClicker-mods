@@ -19,3 +19,8 @@ when the command is in there click the ENTER key to execute it
 
 ⚠️DO NOT PUT ANY UNTRUSTED COMMANDS THERE, LIKE A RANDOM COMMAND THAT SOMEONE HAS SENTED YOU⚠️
 
+-------------------------------------
+
+pokemon randomizer W.I.P:
+The quest where you catch 5 Pidgey is almost IMP to complete(1 in 1617^5)
+so.... yea I'm trying to make it possible
