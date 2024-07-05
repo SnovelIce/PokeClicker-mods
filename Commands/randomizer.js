@@ -57,3 +57,31 @@ PokemonFactory.generateWildPokemon = function(route, region, subRegion) {
     const ep = GameConstants.BASE_EP_YIELD * (roaming ? GameConstants.ROAMER_EP_MODIFIER : 1);
     return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, 1, gender, GameConstants.ShadowStatus.None, encounterType, heldItem, ep);
 }
+
+//Do it so you can catch every pokemon not just that dumba$$ bird
+CaptureSpecificPokemonQuest = class CaptureSpecificPokemonQuest extends Quest {
+    constructor(smash,capturesNeeded, reward,yo) {
+        super(capturesNeeded, reward);
+        this.focus = App.game.statistics.totalPokemonCaptured;
+    }
+    static generateData() {
+        const amount = SeededRand.intBetween(100, 500);
+        const reward = this.calcReward(amount);
+        return [amount, reward];
+    }
+    static calcReward(amount) {
+        const reward = amount * GameConstants.CAPTURE_POKEMONS_BASE_REWARD;
+        return super.randomizeReward(reward);
+    }
+    get description() {
+        var _a;
+        return (_a = this.customDescription) !== null && _a !== void 0 ? _a : `Capture or hatch ${this.amount.toLocaleString('en-US')} Pokémon.`;
+    }
+    toJSON() {
+        const json = super.toJSON();
+        json.name = this.constructor.name;
+        return json;
+    }
+}
+App.game.wallet.gainQuestPoints(30)
+QuestLineHelper.createTutorial()
